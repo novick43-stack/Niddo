@@ -25,7 +25,15 @@ from reportlab.lib.styles import getSampleStyleSheet
 # ── Config ─────────────────────────────────────────────────────────────────────
 load_dotenv()
 
-app = Flask(__name__)
+# Resolve paths relative to *this* file so the app works both locally
+# and when imported from api/index.py on Vercel.
+_HERE = os.path.dirname(os.path.abspath(__file__))
+
+app = Flask(
+    __name__,
+    template_folder=os.path.join(_HERE, 'templates'),
+    static_folder=os.path.join(_HERE, 'static'),
+)
 app.secret_key = os.environ['SECRET_KEY']
 app.config['SESSION_COOKIE_SECURE'] = False   # True en producción (HTTPS)
 app.config['SESSION_COOKIE_HTTPONLY'] = True

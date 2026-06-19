@@ -1,0 +1,12 @@
+.git
+.env
+.env.local
+__pycache__
+*.pyc
+.venv
+venv
+.claude
+.DS_Store
+auth0_action.js
+supabase_schema.sql
+supabase_schema_v2.sql
